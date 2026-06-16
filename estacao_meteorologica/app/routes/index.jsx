@@ -2,31 +2,35 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
-// telas
+// Import das telas
 import Login from '../pages/login';
-import Cadastro from '../pages/cadastro';
 import Registro from '../pages/registro';
+import Cadastro from '../pages/cadastro';
+import Dashboard from '../pages/dashboard';
+import Relatorio from '../pages/relatorio';
 
-// navegadores
+// Navegadores
 const Stack = createStackNavigator();
-const Draw = createDrawerNavigator();
+const Drawer = createDrawerNavigator();
 
 function MenuSuperior() {
   return (
-    <Draw.Navigator
+    <Drawer.Navigator
       screenOptions={({ route }) => ({
         headerShown: true,
         drawerActiveTintColor: '#FF914D',
         drawerInactiveTintColor: '#777',
-        drawerIcon: ({ color, size }) => {
-          let nomeIcone = 'menu-outline';
+        drawerIcon: ({ color, size, focused }) => {
+          let nomeIcone;
 
           if (route.name === 'Home') {
-            nomeIcone = 'home-outline';
-          }
-
-          if (route.name === 'Cadastro') {
-            nomeIcone = 'person-add-outline';
+            nomeIcone = focused ? 'home' : 'home-outline';
+          } else if (route.name === 'Cadastro') {
+            nomeIcone = focused ? 'person-add' : 'person-add-outline';
+          } else if (route.name === 'Relatorio') {
+            nomeIcone = focused
+              ? 'document-text'
+              : 'document-text-outline';
           }
 
           return (
@@ -39,12 +43,22 @@ function MenuSuperior() {
         },
       })}
     >
-      <Draw.Screen
+      <Drawer.Screen
         name="Home"
-        component={Login}
+        component={Dashboard}
         options={{ headerTitleAlign: 'center' }}
       />
-    </Draw.Navigator>
+
+      <Drawer.Screen
+        name="Cadastro"
+        component={Cadastro}
+      />
+
+      <Drawer.Screen
+        name="Relatorio"
+        component={Relatorio}
+      />
+    </Drawer.Navigator>
   );
 }
 
@@ -58,23 +72,25 @@ export default function Rotas() {
       />
 
       <Stack.Screen
-        name="Cadastro"
-        component={Cadastro}
-        options={{ title: 'Cadastro de Usuário' }}
-      />
-      <Stack.Screen
         name="Registro"
         component={Registro}
         options={{ headerShown: false }}
       />
 
-      {/*
+      <Stack.Screen
+        name="Cadastro"
+        component={Cadastro}
+        options={{ headerShown: false }}
+      />
+
       <Stack.Screen
         name="Principal"
         component={MenuSuperior}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: false,
+          title: '',
+        }}
       />
-      */}
     </Stack.Navigator>
   );
 }

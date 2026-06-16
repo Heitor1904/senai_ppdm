@@ -32,7 +32,7 @@ export default function Login({ navigation }) {
           secureTextEntry
         />
 
-        <TouchableOpacity style={styles.botao}>
+        <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('Principal')}>
           <Text style={styles.textoBotao}>Entrar</Text>
         </TouchableOpacity>
 

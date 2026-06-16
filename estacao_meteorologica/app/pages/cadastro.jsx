@@ -1,22 +1,22 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
-  View,
+  Alert,
+  StyleSheet,
   Text,
   TextInput,
-  StyleSheet,
   TouchableOpacity,
-  Alert
-} from 'react-native';
+  View,
+} from "react-native";
 
 export default function Cadastro() {
-  const [temp, setTemp] = useState('');
-  const [hum, setHum] = useState('');
-  const [kmVento, setKmVento] = useState('');
+  const [temp, setTemp] = useState("");
+  const [hum, setHum] = useState("");
+  const [kmVento, setKmVento] = useState("");
 
   function salvar() {
     Alert.alert(
-      'Medição salva',
-      `Temperatura: ${temp}°C\nUmidade: ${hum}%\nVento: ${kmVento} km/h`
+      "Medição salva",
+      `Temperatura: ${temp}°C\nUmidade: ${hum}%\nVento: ${kmVento} km/h`,
     );
   }
 
@@ -45,10 +45,7 @@ export default function Cadastro() {
         onChangeText={setKmVento}
       />
 
-      <TouchableOpacity
-        style={styles.botao}
-        onPress={salvar}
-      >
+      <TouchableOpacity style={styles.botao} onPress={salvar}>
         <Text style={styles.textoBotao}>Salvar</Text>
       </TouchableOpacity>
     </View>
@@ -59,36 +56,36 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    justifyContent: 'center',
-    backgroundColor: '#f5f5f5',
+    justifyContent: "center",
+    backgroundColor: "#f5f5f5",
   },
 
   titulo: {
     fontSize: 24,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     marginBottom: 20,
-    color: '#0077cc',
+    color: "#0077cc",
   },
 
   input: {
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: "#ddd",
     borderRadius: 10,
     padding: 12,
     marginBottom: 15,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
 
   botao: {
-    backgroundColor: '#0077cc',
+    backgroundColor: "#0077cc",
     padding: 15,
     borderRadius: 10,
   },
 
   textoBotao: {
-    color: '#fff',
-    textAlign: 'center',
-    fontWeight: 'bold',
+    color: "#fff",
+    textAlign: "center",
+    fontWeight: "bold",
   },
 });
